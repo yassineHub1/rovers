@@ -1,48 +1,30 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import command.Command;
+import rover.Rover;
+
+import java.util.List;
 import java.util.Set;
 
+import static utils.Utils.parseInputfile;
 
 public class Main {
     public static void main(String[] args){
         if(args.length != 1){
-            System.out.println("Invalid number of arguments, one input file is required");
+            // Throw Illegal argument exception.
+            throw new IllegalArgumentException("Please provide a valid input file");
         }
         try{
 
-            BufferedReader reader = new BufferedReader(new FileReader(args[0]));
+            List<String> inputFile = parseInputfile(args[0]);
+            Plateau plateau = Plateau.parsePlateau(inputFile.get(0));
 
-            String[] plateDimensions = reader.readLine().split(" ");
-            int width = Integer.parseInt(plateDimensions[0]);
-            int height = Integer.parseInt(plateDimensions[1]);
-
-            checkPlateDimensions(width, height);
-
-            Plateau plateau = new Plateau(width, height);
-
-            while(reader.ready()){
-
-                String[] roverPosition = reader.readLine().split(" ");
-                int x = Integer.parseInt(roverPosition[0]);
-                int y = Integer.parseInt(roverPosition[1]);
-                char direction = roverPosition[2].charAt(0);
-
-
-                checkRoverPosition(x, y, plateau);
-                Rover rover = new Rover(x, y, direction);
-
-
-                String roverInstructions = reader.readLine();
-                checkRoverInstructions(roverInstructions);
-
-                for(char instruction : roverInstructions.toCharArray()){
-                    rover.action(instruction);
-                }
-
+            List<String> roverInput = inputFile.subList(1, inputFile.size());
+            
+            for(int i = 0; i < roverInput.size(); i+=2){
+                Rover rover = Rover.createRover(roverInput.get(i));
+                List<Command> commands = Command.parseCommand(roverInput.get(i+1));
+                rover.execute(commands);
                 System.out.println(rover);
             }
-
-            reader.close();
 
         } catch(Exception e){
             System.out.println("Error: " + e.getMessage());
@@ -63,7 +45,7 @@ public class Main {
 
     private static void checkRoverPosition(int x, int y, Plateau plateau) throws Exception{
         if(x < 0 || x > plateau.getWidth() || y < 0 || y > plateau.getHeight()){
-            throw new IllegalArgumentException("Rover position is out of bounds");
+            throw new IllegalArgumentException("rover.Rover position is out of bounds");
         }
     }
 

@@ -6,6 +6,17 @@ public class Plateau {
         this.width = width;
         this.height = height;
     }
+    public static Plateau parsePlateau(String plateauDimensions){
+        String[] dimensions = plateauDimensions.split(" ");
+        int width = Integer.parseInt(dimensions[0]);
+        int height = Integer.parseInt(dimensions[1]);
+
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Invalid plateau dimensions");
+        } else {
+            return new Plateau(width, height);
+        }
+    }
 
     public int getWidth(){
         return width;
