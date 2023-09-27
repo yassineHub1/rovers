@@ -34,25 +34,5 @@ public class Main {
 
     }
 
-    private static void checkRoverInstructions(String roverInstructions) {
-        Set<Character> validInstructions = Set.of('L', 'R', 'M');
 
-        for(char instruction : roverInstructions.toCharArray()){
-            if(!validInstructions.contains(instruction)){
-                throw new IllegalArgumentException("Invalid instruction: " + instruction);
-            }
-        }
-    }
-
-    private static void checkRoverPosition(int x, int y, Plateau plateau) throws Exception{
-        if(x < 0 || x > plateau.getWidth() || y < 0 || y > plateau.getHeight()){
-            throw new IllegalArgumentException("rover.Rover position is out of bounds");
-        }
-    }
-
-    private static void checkPlateDimensions(int rows, int columns) throws Exception {
-        if(rows < 0 ||  columns < 0){
-            throw new Exception("Invalid plate dimensions");
-        }
-    }
 }
