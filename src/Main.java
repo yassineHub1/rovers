@@ -5,6 +5,7 @@ import rover.Plateau;
 import java.util.List;
 import java.util.Set;
 
+import static utils.Utils.checkRoverPosition;
 import static utils.Utils.parseAndCheckInputfile;
 
 public class Main {
@@ -24,11 +25,14 @@ public class Main {
                 Rover rover = Rover.createRover(roverInput.get(i));
                 List<Command> commands = Command.parseCommand(roverInput.get(i+1));
                 rover.execute(commands);
+                rover.checkRoverPosition(plateau);
+
                 System.out.println(rover);
             }
 
         } catch(Exception e){
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
+            System.exit(1);
         }
 
 

@@ -38,6 +38,7 @@ public class Rover {
         return new Rover(coordinate, direction);
     }
 
+
     public void incrementX(){
         this.coordinate.incrementX();
     }
@@ -58,6 +59,15 @@ public class Rover {
     public String toString() {
         return this.coordinate.toString() + " " + this.direction.toString();
     }
+
+    public void checkRoverPosition(Plateau plateau){
+        int x = this.coordinate.getAbssice();
+        int y = this.coordinate.getOrdinate();
+        if(x < 0 || x > plateau.getWidth() || y < 0 || y > plateau.getHeight()){
+            throw new IllegalArgumentException("Invalid rover position");
+        }
+    }
+
 
     public void execute(List<Command> commands){
         for (Command command : commands){

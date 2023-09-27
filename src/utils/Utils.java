@@ -1,14 +1,14 @@
 package utils;
 
+import command.Command;
+import command.LookupCommand;
 import direction.Direction;
 import direction.TranslateCharDirection;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Utils {
@@ -48,7 +48,9 @@ public class Utils {
 
     public static void chekRoverInstruction(String roverInstruction){
         for(char instruction : roverInstruction.toCharArray()){
-            if(instruction != 'L' && instruction != 'R' && instruction != 'M'){
+            try{
+                Command c = LookupCommand.valueOf(String.valueOf(instruction)).getCommand();
+            } catch (Exception e){
                 throw new IllegalArgumentException("Invalid rover instruction");
             }
         }
