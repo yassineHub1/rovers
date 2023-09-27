@@ -15,4 +15,8 @@ public class Sud implements Direction{
     public void move(Rover rover) {
         rover.decrementY();
     }
+    @Override
+    public String toString(){
+        return "S";
+    }
 }

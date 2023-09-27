@@ -15,5 +15,10 @@ public class Est implements Direction{
     public void move(Rover rover) {
         rover.incrementX();
     }
+
+    @Override
+    public String toString(){
+        return "E";
+    }
 }
 

@@ -16,4 +16,9 @@ public class Nord implements Direction{
         rover.incrementY();
     }
 
+    @Override
+    public String toString(){
+        return "N";
+    }
+
 }

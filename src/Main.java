@@ -1,10 +1,11 @@
 import command.Command;
 import rover.Rover;
+import rover.Plateau;
 
 import java.util.List;
 import java.util.Set;
 
-import static utils.Utils.parseInputfile;
+import static utils.Utils.parseAndCheckInputfile;
 
 public class Main {
     public static void main(String[] args){
@@ -14,7 +15,7 @@ public class Main {
         }
         try{
 
-            List<String> inputFile = parseInputfile(args[0]);
+            List<String> inputFile = parseAndCheckInputfile(args[0]);
             Plateau plateau = Plateau.parsePlateau(inputFile.get(0));
 
             List<String> roverInput = inputFile.subList(1, inputFile.size());

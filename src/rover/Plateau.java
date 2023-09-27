@@ -1,3 +1,5 @@
+package rover;
+
 public class Plateau {
     private int width;
     private int height;

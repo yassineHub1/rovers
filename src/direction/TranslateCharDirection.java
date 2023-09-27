@@ -12,4 +12,5 @@ public enum TranslateCharDirection {
     public Direction getDirection(){
         return direction;
     }
+
 }

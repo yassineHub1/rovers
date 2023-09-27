@@ -15,4 +15,9 @@ public class Ouest implements Direction{
     public void move(Rover rover) {
         rover.decrementX();
     }
+
+    @Override
+    public String toString(){
+        return "0";
+    }
 }

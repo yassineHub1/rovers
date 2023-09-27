@@ -37,4 +37,9 @@ public class CartesianCoordinate implements Coordinate{
     public void decrementY() {
         y--;
     }
+
+    @Override
+    public String toString(){
+        return x + " " + y;
+    }
 }

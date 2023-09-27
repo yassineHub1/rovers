@@ -27,19 +27,7 @@ public class Rover {
     public void move(){
         this.direction.move(this);
     }
-    public void action(char instruction){
-        switch (instruction){
-            case 'L':
-                turnLeft();
-                break;
-            case 'R':
-                turnRight();
-                break;
-            case 'M':
-                move();
-                break;
-        }
-    }
+
 
     public static Rover createRover(String position){
         String[] positionArray = position.split(" ");
@@ -76,4 +64,6 @@ public class Rover {
             command.execute(this);
         }
     }
+
+
 }
